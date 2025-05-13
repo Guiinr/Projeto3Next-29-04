@@ -13,7 +13,6 @@ interface FormData {
     telefone_celular: string
     senha: string
     confirmar_senha: string
-    endereco: string
 }
 
 interface FormErrors {
@@ -24,7 +23,6 @@ interface FormErrors {
     telefone_celular: string
     senha: string
     confirmar_senha: string
-    endereco: string
 }
 
 export default function Cadastro() {
@@ -35,8 +33,7 @@ export default function Cadastro() {
         email: '',
         telefone_celular: '',
         senha: '',
-        confirmar_senha: '',
-        endereco: ''
+        confirmar_senha: ''
     })
 
     const [errors, setErrors] = useState<FormErrors>({
@@ -46,8 +43,7 @@ export default function Cadastro() {
         email: '',
         telefone_celular: '',
         senha: '',
-        confirmar_senha: '',
-        endereco: ''
+        confirmar_senha: ''
     })
 
     const router = useRouter()
@@ -91,8 +87,7 @@ export default function Cadastro() {
             email: '',
             telefone_celular: '',
             senha: '',
-            confirmar_senha: '',
-            endereco: ''
+            confirmar_senha: ''
         }
 
         // Validar nome
@@ -140,12 +135,6 @@ export default function Cadastro() {
             valid = false
         }
 
-        // Validar endereço
-        if (formData.endereco.trim() === '') {
-            newErrors.endereco = 'Por favor, insira seu endereço completo'
-            valid = false
-        }
-
         setErrors(newErrors)
         return valid
     }
@@ -161,7 +150,6 @@ export default function Cadastro() {
                 email: formData.email,
                 senha: formData.senha,
                 data_nascimento: formData.data_nascimento,
-                endereco: formData.endereco,
                 telefone_celular: formData.telefone_celular
             })
 
@@ -290,22 +278,6 @@ export default function Cadastro() {
                             />
                             {errors.confirmar_senha && <span className={styles.errorMessage}>{errors.confirmar_senha}</span>}
                         </div>
-                    </div>
-
-                    {/* Endereço */}
-                    <div className={styles.formGroup}>
-                        <label htmlFor="endereco" className={styles.formLabel}>Endereço Completo*</label>
-                        <input
-                            type="text"
-                            id="endereco"
-                            name="endereco"
-                            value={formData.endereco}
-                            onChange={handleChange}
-                            placeholder="Rua, número, complemento, bairro, cidade, estado"
-                            className={`${styles.formInput} ${errors.endereco ? styles.invalid : ''}`}
-                            required
-                        />
-                        {errors.endereco && <span className={styles.errorMessage}>{errors.endereco}</span>}
                     </div>
 
                     <button type="submit" className={styles.submitButton}>
